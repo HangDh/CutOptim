@@ -387,7 +387,7 @@ class App(QWidget):
             content = f.read()
 
         cutsStr = list(content.split(':CUT'))
-        optimCuts = pd.DataFrame(columns = cuts.columns)
+        optimCuts = pd.DataFrame(columns=['index', 'Ilosc', 'DlugoscCiecia', 'Profil', 'AngleL2', 'AngleR2', 'indexLocal'])
 
         for j in range(len(rest)):
             elements.append([])
@@ -399,8 +399,9 @@ class App(QWidget):
                         removed = False
                         rest[j][i] -= cCut
                         elements[j][i].append(cCut)
-                        item = cuts.iloc[idx]
-                        optimCuts.loc[optimCuts.shape[0]] = cuts.iloc[idx]
+                        item = cuts.loc[idx]
+                        item['indexLocal'] = 10*j+i
+                        optimCuts.loc[optimCuts.shape[0]] = cuts.loc[idx]
                         with open('test.ncx', 'w', encoding='utf-8') as outfile:
                             for cut in cutsStr:
                                 if str(cCut) in cut and removed == False:
@@ -409,8 +410,8 @@ class App(QWidget):
                                 else:
                                     outfile.write(':CUT')
                                     outfile.write(cut)
-
-        optimCuts.drop('index', inplace=True)
+        optimCuts.sort_values(by=['indexLocal'])
+        optimCuts.drop(['index', 'indexLocal'], axis=1, inplace=True)
         self.printBar(filepath, elements, rest, wady, profil)
         return optimCuts
 
