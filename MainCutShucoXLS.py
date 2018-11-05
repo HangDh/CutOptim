@@ -291,9 +291,38 @@ class App(QWidget):
 
                 self.textbox.setText('Export ' + os.path.basename(fileName) + ' wykonany pomyślnie')
 
+    def getBarsSQL(self, zlecText):
+        import pyodbc
+
+        server = '85.10.205.173'
+        database = 'hpl2018'
+        username = 'hplpawel'
+        password = 'hahaha123'
+        driver = '{MySQL ODBC 8.0 Unicode Driver}'  # Driver you need to connect to the database
+        port = '3306'
+        cnn = pyodbc.connect('DRIVER=' + driver + ';PORT=' + port + ';SERVER=' + server + ';DATABASE=' + database + ';UID=' + username +
+                             ';PWD=' + password)
+
+        DF = pd.read_sql_query("SELECT * FROM " + zlecText, cnn)
+
+        filterProfilOk = [col for col in DF if col.startswith('P')]
+        filterDefekt = [col for col in DF if col.startswith('D')]
+
+        DFProfil = DF[filterProfilOk][DF[filterProfilOk] > 0]
+        DFWady = DF[filterDefekt][DF[filterDefekt] > 0]
+
+        DFProfil.dropna(axis=1, how='all', inplace=True)
+        DFWady.drop(columns='DATE', inplace=True)
+        DFWady.dropna(axis=1, how='all', inplace=True)
+
+        return DFProfil, DFWady
+
     def ncxToCun(self, filepath):
         with open(filepath) as f:
             content = f.read()
+
+        cutsStr = content.split(':CUT')
+
         arrBars = ncloader.load(content)
 
         cuts = []
@@ -342,7 +371,78 @@ class App(QWidget):
         dFCuts['Ilosc'] = dFCuts['Ilosc'].astype(str)
         dFCuts['DlugoscCiecia'] = dFCuts['DlugoscCiecia'].astype(str)
         dFCuts_filtered = dFCuts[~dFCuts['Profil'].isin(dropProfile)]
-        return dFCuts_filtered
+        return self.optimizeScratch(dFCuts_filtered, 25, filepath)
+
+    def optimizeScratch(self, dataFrame, zapasTolerancji, filepath):
+        cuts = dataFrame.reset_index()
+        profil = dataFrame['Profil'].iloc[0]
+        rest, wady = self.getBarsSQL('Z857_1')
+        rest = list(rest.values)
+        wady = list(wady.values)
+
+        elements = []
+        cut_idx = 0
+
+        with open(filepath) as f:
+            content = f.read()
+
+        cutsStr = list(content.split(':CUT'))
+        optimCuts = pd.DataFrame(columns = cuts.columns)
+
+        for j in range(len(rest)):
+            elements.append([])
+            for i in range(len(rest[j])):
+                elements[j].append([])
+                for idx, c in cuts.iterrows():
+                    cCut = int(c['DlugoscCiecia'])/10
+                    if cCut < rest[j][i] - zapasTolerancji:
+                        removed = False
+                        rest[j][i] -= cCut
+                        elements[j][i].append(cCut)
+                        item = cuts.iloc[idx]
+                        optimCuts.loc[optimCuts.shape[0]] = cuts.iloc[idx]
+                        with open('test.ncx', 'w', encoding='utf-8') as outfile:
+                            for cut in cutsStr:
+                                if str(cCut) in cut and removed == False:
+                                    cutsStr.remove(cut)
+                                    removed = True
+                                else:
+                                    outfile.write(':CUT')
+                                    outfile.write(cut)
+
+        optimCuts.drop('index', inplace=True)
+        self.printBar(filepath, elements, rest, wady, profil)
+        return optimCuts
+
+    def printBar(self, filepath_, elements_, rest_, wady_, profil_):
+        import math
+        short_ = str(profil_)[-4:]
+        sum = 0
+        sum_prof = 0
+
+        with open(filepath_[:-4]+short_+'_r.txt', 'w', encoding='utf-8') as outfile:
+            for i in range(len(elements_)):
+                sum_prof = 0
+                outfile.write('Belka nr: ' + str(i + 1)+'\n')
+                for j in range(len(elements_[i])):
+                    sum = 0
+                    for k in range(len(elements_[i][j])):
+                        sum += elements_[i][j][k]
+                        sum_prof += elements_[i][j][k]  # Mierzenie długości profila (6600)
+                        outfile.write('prof: ' + str(elements_[i][j][k])+'\n')
+                    if (math.isnan(rest_[i][j])) == False:
+                        wada = 0
+                        sum_prof += rest_[i][j]  # Mierzenie długości profila (6600)
+                        try:
+                            if (math.isnan(wady_[i][j])) == False:
+                                wada += (wady_[i][j])
+                                sum_prof += wada  # Mierzenie długości profila (6600)
+                        except:
+                            wada = 0
+                        outfile.write('def: ' + str('%.1f' % (rest_[i][j] + wada))+'\n')
+                outfile.write(str(sum_prof)+'\n')
+                outfile.write(''+'\n')
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
