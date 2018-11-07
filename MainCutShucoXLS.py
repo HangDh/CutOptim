@@ -53,7 +53,7 @@ class App(QWidget):
         self.left = 100
         self.top = 100
         self.width = 350
-        self.height = 320
+        self.height = 260
         self.initUI()
 
     def initUI(self):
@@ -72,28 +72,23 @@ class App(QWidget):
 
         self.checkBJM = QCheckBox('BJM', self)
         self.checkBJM.setChecked(True)
-        self.checkBJM.move(70, 225)
+        self.checkBJM.move(70, 165)
 
         listCut = ["Ruch głowicy", "Ruch piły"]
         self.combo = QComboBox(self)
         self.combo.clear()
         self.combo.addItems(listCut)
-        self.combo.move(40, 190)
-
-        self.profilbox = QLineEdit(self)
-        self.profilbox.move(160, 120)
-        self.profilbox.setAlignment(Qt.AlignCenter)
-        self.profilbox.resize(150, 92)
+        self.combo.move(200, 125)
 
         searchbtn = QPushButton('Logikal', self)
-        searchbtn.move(40, 150)
+        searchbtn.move(40, 120)
         searchbtn.clicked.connect(self.openFileNameDialog)
 
         self.labelScratch = QLabel('Scratch DB_Zlec:', self)
-        self.labelScratch.move(40, 265)
+        self.labelScratch.move(40, 205)
 
         self.textScratch = QLineEdit(self)
-        self.textScratch.move(150, 260)
+        self.textScratch.move(150, 200)
         self.textScratch.setAlignment(Qt.AlignCenter)
         self.textScratch.resize(150, 30)
 
@@ -347,6 +342,8 @@ class App(QWidget):
             cuts += bar.barCuts
 
         for cut_ in cuts:
+            if cut_.cutProfil.endswith('A') or cut_.cutProfil.endswith('E'):
+                cut_.cutProfil = cut_.cutProfil[:-1]
             if len(cut_.cutMacros) > 0 or len(cut_.cutWorks) > 0:
                 cut_.cutCNC = 'CNC'
             else:
@@ -391,7 +388,7 @@ class App(QWidget):
             optimize = self.optimizeScratch(dFCuts_filtered, 25, filepath)
             return optimize
         else:
-            dFCuts_filtered
+            return dFCuts_filtered
 
     def optimizeScratch(self, dataFrame, zapasTolerancji, filepath):
         cuts = dataFrame.reset_index()
@@ -422,7 +419,7 @@ class App(QWidget):
                         item = cuts.loc[idx]
                         item['indexLocal'] = 10*j+i
                         optimCuts.loc[optimCuts.shape[0]] = item
-                        with open(self.textScratch.text + 'optim.ncx', 'w', encoding='utf-8') as outfile:
+                        with open(self.textScratch.text() + 'optim.ncx', 'w', encoding='utf-8') as outfile:
                             for cut in cutsStr:
                                 if str(cCut) in cut and removed == False:
                                     cutsStr.remove(cut)
