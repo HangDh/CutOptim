@@ -1,3 +1,4 @@
+import copy
 import sys
 import os
 import time
@@ -52,7 +53,7 @@ class App(QWidget):
         self.left = 100
         self.top = 100
         self.width = 350
-        self.height = 260
+        self.height = 320
         self.initUI()
 
     def initUI(self):
@@ -88,11 +89,13 @@ class App(QWidget):
         searchbtn.move(40, 150)
         searchbtn.clicked.connect(self.openFileNameDialog)
 
-        '''
-        searchshc = QPushButton('Shueco', self)
-        searchshc.move(40, 120)
-        searchshc.clicked.connect(self.openSchuecoDialog)
-        '''
+        self.labelScratch = QLabel('Scratch DB_Zlec:', self)
+        self.labelScratch.move(40, 265)
+
+        self.textScratch = QLineEdit(self)
+        self.textScratch.move(150, 260)
+        self.textScratch.setAlignment(Qt.AlignCenter)
+        self.textScratch.resize(150, 30)
 
         self.show()
 
@@ -127,18 +130,32 @@ class App(QWidget):
             print(fileName)
 
             for p in profilList:
-                df = dFCutstemp[dFCutstemp['cutProfil'] == p]
+                if 'cutProfil' in dFCutstemp.columns:
+                    df = dFCutstemp[dFCutstemp['cutProfil'] == p]
+                else:
+                    df = dFCutstemp[dFCutstemp['Profil'] == p]
                 short = str(p)[-4:]
                 file = open(fileName + short + '.txt', 'w')
 
-                for i, row_ in df.iterrows():
-                    if i < df.shape[0] - 1:
-                        file.write(path_leaf(fileName + short) + '\n' + row_['cutDescription'] + '\n' + row_['cutNumber'] + '\n' + row_['cutProfil'] + ';' + row_['cutCNC'] + '\n' + str(row_['cutLength']) + ';' + str(
-                            row_['cutAngleL']) + ';' + str(row_['cutAngleR']) + '\n')
-                    else:
-                        file.write(path_leaf(fileName + short) + '\n' + row_['cutDescription'] + '\n' + row_['cutNumber'] + '\n' + row_['cutProfil'] + ';' + row_['cutCNC'] + '\n' + str(row_['cutLength']) + ';' + str(
-                            row_['cutAngleL']) + ';' + str(row_['cutAngleR']))
-                file.close()
+                if 'AngleL2' in df.columns:
+                    for i, row_ in df.iterrows():
+                        if i < df.shape[0] - 1:
+                            file.write(path_leaf(fileName + short) + '\n' + row_['Opis'] + '\n' + row_['Numer'] + '\n' + row_['Profil'] + ';' + row_['CNC'] + '\n' + str(row_['DlugoscCiecia']) + ';' + str(
+                                row_['AngleL2']) + ';' + str(row_['AngleR2']) + '\n')
+                        else:
+                            file.write(path_leaf(fileName + short) + '\n' + row_['Opis'] + '\n' + row_['Numer'] + '\n' + row_['Profil'] + ';' + row_[
+                                'CNC'] + '\n' + str(row_['DlugoscCiecia']) + ';' + str(
+                                row_['AngleL2']) + ';' + str(row_['AngleR2']))
+                    file.close()
+                else:
+                    for i, row_ in df.iterrows():
+                        if i < df.shape[0] - 1:
+                            file.write(path_leaf(fileName + short) + '\n' + row_['cutDescription'] + '\n' + row_['cutNumber'] + '\n' + row_['cutProfil'] + ';' + row_['cutCNC'] + '\n' + str(row_['cutLength']) + ';' + str(
+                                row_['cutAngleL']) + ';' + str(row_['cutAngleR']) + '\n')
+                        else:
+                            file.write(path_leaf(fileName + short) + '\n' + row_['cutDescription'] + '\n' + row_['cutNumber'] + '\n' + row_['cutProfil'] + ';' + row_['cutCNC'] + '\n' + str(row_['cutLength']) + ';' + str(
+                                row_['cutAngleL']) + ';' + str(row_['cutAngleR']))
+                    file.close()
 
             for p in profilList:
                 df = dataFrame[dataFrame['Profil'] == p]
@@ -338,9 +355,9 @@ class App(QWidget):
         global dFCutstemp
         dFCutstemp = pd.DataFrame.from_records([cut_.to_dict() for cut_ in cuts])
 
-        cols = ['cutIlosc', 'cutLength', 'cutProfil', 'cutDescription', 'cutAngleL', 'cutAngleR']
+        cols = ['cutIlosc', 'cutLength', 'cutProfil', 'cutDescription', 'cutAngleL', 'cutAngleR', 'cutCNC', 'cutNumber']
         dFCuts = dFCutstemp[cols]
-        dFCuts.columns = ['Ilosc', 'DlugoscCiecia', 'Profil', 'Opis', 'AngleL2', 'AngleR2']
+        dFCuts.columns = ['Ilosc', 'DlugoscCiecia', 'Profil', 'Opis', 'AngleL2', 'AngleR2', 'CNC', 'Numer']
 
         profilList = dFCuts['Profil'].unique()
         profilList = np.delete(profilList, np.nan)
@@ -364,19 +381,22 @@ class App(QWidget):
             dropProfile += ['421113', '422083', '421263', '422223', '421613', '422493', '421703', '422583']
             dropProfile += ['421793', '422703', '421803', '422713', '423223', '422273', '422273']
 
-        dFCuts.drop('Opis', axis=1, inplace=True)
         dFCuts['Ilosc'] = dFCuts['Ilosc'].astype(int)
         dFCuts['DlugoscCiecia'] = dFCuts['DlugoscCiecia']*10
         dFCuts['DlugoscCiecia'] = dFCuts['DlugoscCiecia'].astype(int)
         dFCuts['Ilosc'] = dFCuts['Ilosc'].astype(str)
         dFCuts['DlugoscCiecia'] = dFCuts['DlugoscCiecia'].astype(str)
         dFCuts_filtered = dFCuts[~dFCuts['Profil'].isin(dropProfile)]
-        return self.optimizeScratch(dFCuts_filtered, 25, filepath)
+        if len(self.textScratch.text()) > 0:
+            optimize = self.optimizeScratch(dFCuts_filtered, 25, filepath)
+            return optimize
+        else:
+            dFCuts_filtered
 
     def optimizeScratch(self, dataFrame, zapasTolerancji, filepath):
         cuts = dataFrame.reset_index()
         profil = dataFrame['Profil'].iloc[0]
-        rest, wady = self.getBarsSQL('Z857_1')
+        rest, wady = self.getBarsSQL(self.textScratch.text())
         rest = list(rest.values)
         wady = list(wady.values)
 
@@ -387,7 +407,7 @@ class App(QWidget):
             content = f.read()
 
         cutsStr = list(content.split(':CUT'))
-        optimCuts = pd.DataFrame(columns=['index', 'Ilosc', 'DlugoscCiecia', 'Profil', 'AngleL2', 'AngleR2', 'indexLocal'])
+        optimCuts = pd.DataFrame(columns=['index', 'Ilosc', 'DlugoscCiecia', 'Profil', 'AngleL2', 'AngleR2', 'CNC', 'Opis', 'Numer', 'indexLocal'])
 
         for j in range(len(rest)):
             elements.append([])
@@ -401,8 +421,8 @@ class App(QWidget):
                         elements[j][i].append(cCut)
                         item = cuts.loc[idx]
                         item['indexLocal'] = 10*j+i
-                        optimCuts.loc[optimCuts.shape[0]] = cuts.loc[idx]
-                        with open('test.ncx', 'w', encoding='utf-8') as outfile:
+                        optimCuts.loc[optimCuts.shape[0]] = item
+                        with open(self.textScratch.text + 'optim.ncx', 'w', encoding='utf-8') as outfile:
                             for cut in cutsStr:
                                 if str(cCut) in cut and removed == False:
                                     cutsStr.remove(cut)
@@ -411,7 +431,13 @@ class App(QWidget):
                                     outfile.write(':CUT')
                                     outfile.write(cut)
         optimCuts.sort_values(by=['indexLocal'])
-        optimCuts.drop(['index', 'indexLocal'], axis=1, inplace=True)
+        global dFCutstemp
+        dFCutstemp = copy.copy(optimCuts)
+        dFCutstemp.Ilosc = dFCutstemp.Ilosc.str[:-1]
+        dFCutstemp.DlugoscCiecia = dFCutstemp.DlugoscCiecia.str[:-1]
+
+        optimCuts['Wysokosc'] = 0
+        optimCuts.drop(['index', 'indexLocal', 'CNC', 'Opis', 'Numer'], axis=1, inplace=True)
         self.printBar(filepath, elements, rest, wady, profil)
         return optimCuts
 
