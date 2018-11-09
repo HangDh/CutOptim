@@ -130,7 +130,8 @@ class App(QWidget):
                 else:
                     df = dFCutstemp[dFCutstemp['Profil'] == p]
                 short = str(p)[-4:]
-                file = open(fileName + short + '.txt', 'w')
+                location = fileName.split('/')
+                file = open(location[0] + '/' + location[1] + '/ETX/' + location[2] + short + '.txt', 'w')
 
                 if 'AngleL2' in df.columns:
                     for i, row_ in df.iterrows():
@@ -359,13 +360,6 @@ class App(QWidget):
         profilList = dFCuts['Profil'].unique()
         profilList = np.delete(profilList, np.nan)
 
-        filtr = str(self.profilbox.text())
-
-        if filtr != "":
-            dFCuts = dFCuts[dFCuts['Profil'].isin(filtr.split(","))]
-        else:
-            dFCuts = dFCuts[dFCuts['Profil'].isin(profilList)]
-
         dFCuts['Ilosc'] = dFCuts['Ilosc'].astype(str)
         dFCuts['Ilosc'] = dFCuts['Ilosc'].str.replace('\s', '')
         dFCuts['Ilosc'] = dFCuts['Ilosc'] + '0'
@@ -444,7 +438,7 @@ class App(QWidget):
         sum = 0
         sum_prof = 0
 
-        with open(filepath_[:-4]+short_+'_r.txt', 'w', encoding='utf-8') as outfile:
+        with open('Z:\\emmegifdd\\ETX'+filepath_[:-4]+short_+'_r.txt', 'w', encoding='utf-8') as outfile:
             for i in range(len(elements_)):
                 sum_prof = 0
                 outfile.write('Belka nr: ' + str(i + 1)+'\n')
