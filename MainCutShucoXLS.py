@@ -396,9 +396,12 @@ class App(QWidget):
 
         with open(filepath) as f:
             content = f.read()
-
+        barStr = list(content.split(':BAR'))
         cutsStr = list(content.split(':CUT'))
         optimCuts = pd.DataFrame(columns=['index', 'Ilosc', 'DlugoscCiecia', 'Profil', 'AngleL2', 'AngleR2', 'CNC', 'Opis', 'Numer', 'indexLocal'])
+
+        for _ in range(len(barStr)-len(rest)+1):
+            rest.append(np.array([6600]))
 
         for j in range(len(rest)):
             elements.append([])
@@ -413,7 +416,7 @@ class App(QWidget):
                         item = cuts.loc[idx]
                         item['indexLocal'] = 10*j+i
                         optimCuts.loc[optimCuts.shape[0]] = item
-                        with open(self.textScratch.text() + 'optim.ncx', 'w', encoding='utf-8') as outfile:
+                        with open(self.textScratch.text() + 'optim.NCX', 'w', encoding='utf-8') as outfile:
                             for cut in cutsStr:
                                 if str(cCut) in cut and removed == False:
                                     cutsStr.remove(cut)
@@ -421,6 +424,8 @@ class App(QWidget):
                                 else:
                                     outfile.write(':CUT')
                                     outfile.write(cut)
+                        cuts.drop(index=idx, axis=0, inplace=True)
+
         optimCuts.sort_values(by=['indexLocal'])
         global dFCutstemp
         dFCutstemp = copy.copy(optimCuts)
@@ -437,8 +442,8 @@ class App(QWidget):
         short_ = str(profil_)[-4:]
         sum = 0
         sum_prof = 0
-
-        with open('Z:\\emmegifdd\\ETX'+filepath_[:-4]+short_+'_r.txt', 'w', encoding='utf-8') as outfile:
+        splitFilepath = filepath_.split('/')
+        with open('Z:\\emmegifdd\\ETX'+splitFilepath[-1][:-4]+short_+'_r.txt', 'w', encoding='utf-8') as outfile:
             for i in range(len(elements_)):
                 sum_prof = 0
                 outfile.write('Belka nr: ' + str(i + 1)+'\n')
