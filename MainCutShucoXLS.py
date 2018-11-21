@@ -13,6 +13,8 @@ from PyQt5.QtWidgets import QPushButton, QLineEdit, QFileDialog, QApplication, Q
 
 dFCutstemp = ''
 
+pd.options.mode.chained_assignment = None
+
 def LeftAngle(row):
     if row['AngleL2'].find('I') > -1:
         return '90'
@@ -307,7 +309,7 @@ class App(QWidget):
     def getBarsSQL(self, zlecText):
         import pyodbc
 
-        server = '85.10.205.173'
+        server = '10.111.40.147'
         database = 'hpl2018'
         username = 'hplpawel'
         password = 'hahaha123'
@@ -400,7 +402,7 @@ class App(QWidget):
         cutsStr = list(content.split(':CUT'))
         optimCuts = pd.DataFrame(columns=['index', 'Ilosc', 'DlugoscCiecia', 'Profil', 'AngleL2', 'AngleR2', 'CNC', 'Opis', 'Numer', 'indexLocal'])
 
-        for _ in range(len(barStr)-len(rest)+1):
+        for _ in range(len(barStr)-len(rest)):
             rest.append(np.array([6600]))
 
         for j in range(len(rest)):
@@ -418,7 +420,7 @@ class App(QWidget):
                         optimCuts.loc[optimCuts.shape[0]] = item
                         with open(self.textScratch.text() + 'optim.NCX', 'w', encoding='utf-8') as outfile:
                             for cut in cutsStr:
-                                if str(cCut) in cut and removed == False:
+                                if str(cCut) in cut and removed is False:
                                     cutsStr.remove(cut)
                                     removed = True
                                 else:
