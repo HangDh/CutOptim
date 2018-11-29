@@ -76,6 +76,9 @@ class App(QWidget):
         self.checkBJM.setChecked(True)
         self.checkBJM.move(70, 165)
 
+        self.checkETX = QCheckBox('ETX', self)
+        self.checkETX.move(200, 165)
+
         listCut = ["Ruch głowicy", "Ruch piły"]
         self.combo = QComboBox(self)
         self.combo.clear()
@@ -132,28 +135,32 @@ class App(QWidget):
                 else:
                     df = dFCutstemp[dFCutstemp['Profil'] == p]
                 short = str(p)[-4:]
-                location = fileName.split('/')
-                file = open(location[0] + '/' + location[1] + '/ETX/' + location[2] + short + '.txt', 'w')
 
-                if 'AngleL2' in df.columns:
-                    for i, row_ in df.iterrows():
-                        if i < df.shape[0] - 1:
-                            file.write(path_leaf(fileName + short) + '\n' + row_['Opis'] + '\n' + row_['Numer'] + '\n' + row_['Profil'] + ';' + row_['CNC'] + '\n' + str(row_['DlugoscCiecia']) + ';' + str(
-                                row_['AngleL2']) + ';' + str(row_['AngleR2']) + '\n')
-                        else:
-                            file.write(path_leaf(fileName + short) + '\n' + row_['Opis'] + '\n' + row_['Numer'] + '\n' + row_['Profil'] + ';' + row_[
-                                'CNC'] + '\n' + str(row_['DlugoscCiecia']) + ';' + str(
-                                row_['AngleL2']) + ';' + str(row_['AngleR2']))
-                    file.close()
-                else:
-                    for i, row_ in df.iterrows():
-                        if i < df.shape[0] - 1:
-                            file.write(path_leaf(fileName + short) + '\n' + row_['cutDescription'] + '\n' + row_['cutNumber'] + '\n' + row_['cutProfil'] + ';' + row_['cutCNC'] + '\n' + str(row_['cutLength']) + ';' + str(
-                                row_['cutAngleL']) + ';' + str(row_['cutAngleR']) + '\n')
-                        else:
-                            file.write(path_leaf(fileName + short) + '\n' + row_['cutDescription'] + '\n' + row_['cutNumber'] + '\n' + row_['cutProfil'] + ';' + row_['cutCNC'] + '\n' + str(row_['cutLength']) + ';' + str(
-                                row_['cutAngleL']) + ';' + str(row_['cutAngleR']))
-                    file.close()
+                if self.checkETX.isChecked():
+                    dirName = os.path.dirname(fileName)
+                    shortFileName = os.path.basename(fileName)
+                    #dirToLocation = dirToLocation.encode()
+                    file = open(dirName + '/ETX/' + shortFileName + short + '.txt', 'w')
+
+                    if 'AngleL2' in df.columns:
+                        for i, row_ in df.iterrows():
+                            if i < df.shape[0] - 1:
+                                file.write(path_leaf(fileName + short) + '\n' + row_['Opis'] + '\n' + row_['Numer'] + '\n' + row_['Profil'] + ';' + row_['CNC'] + '\n' + str(row_['DlugoscCiecia']) + ';' + str(
+                                    row_['AngleL2']) + ';' + str(row_['AngleR2']) + '\n')
+                            else:
+                                file.write(path_leaf(fileName + short) + '\n' + row_['Opis'] + '\n' + row_['Numer'] + '\n' + row_['Profil'] + ';' + row_[
+                                    'CNC'] + '\n' + str(row_['DlugoscCiecia']) + ';' + str(
+                                    row_['AngleL2']) + ';' + str(row_['AngleR2']))
+                        file.close()
+                    else:
+                        for i, row_ in df.iterrows():
+                            if i < df.shape[0] - 1:
+                                file.write(path_leaf(fileName + short) + '\n' + row_['cutDescription'] + '\n' + row_['cutNumber'] + '\n' + row_['cutProfil'] + ';' + row_['cutCNC'] + '\n' + str(row_['cutLength']) + ';' + str(
+                                    row_['cutAngleL']) + ';' + str(row_['cutAngleR']) + '\n')
+                            else:
+                                file.write(path_leaf(fileName + short) + '\n' + row_['cutDescription'] + '\n' + row_['cutNumber'] + '\n' + row_['cutProfil'] + ';' + row_['cutCNC'] + '\n' + str(row_['cutLength']) + ';' + str(
+                                    row_['cutAngleL']) + ';' + str(row_['cutAngleR']))
+                        file.close()
 
             for p in profilList:
                 df = dataFrame[dataFrame['Profil'] == p]
