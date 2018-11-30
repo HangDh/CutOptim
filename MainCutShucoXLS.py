@@ -369,6 +369,8 @@ class App(QWidget):
         profilList = dFCuts['Profil'].unique()
         profilList = np.delete(profilList, np.nan)
 
+        #if dfCuts['AngleL2']
+
         dFCuts['Ilosc'] = dFCuts['Ilosc'].astype(str)
         dFCuts['Ilosc'] = dFCuts['Ilosc'].str.replace('\s', '')
         dFCuts['Ilosc'] = dFCuts['Ilosc'] + '0'
@@ -387,6 +389,8 @@ class App(QWidget):
         dFCuts['Ilosc'] = dFCuts['Ilosc'].astype(str)
         dFCuts['DlugoscCiecia'] = dFCuts['DlugoscCiecia'].astype(str)
         dFCuts_filtered = dFCuts[~dFCuts['Profil'].isin(dropProfile)]
+        dFCuts_filtered.loc[dFCuts_filtered['AngleL2'] == 135.0, 'AngleL2'] = 45.0
+        dFCuts_filtered.loc[dFCuts_filtered['AngleR2'] == 135.0, 'AngleR2'] = 45.0
         if len(self.textScratch.text()) > 0:
             optimize = self.optimizeScratch(dFCuts_filtered, 25, filepath)
             return optimize
