@@ -76,8 +76,11 @@ class App(QWidget):
         self.checkBJM.setChecked(True)
         self.checkBJM.move(70, 165)
 
+        self.check135 = QCheckBox('135 to 45', self)
+        self.check135.move(150, 165)
+
         self.checkETX = QCheckBox('ETX', self)
-        self.checkETX.move(200, 165)
+        self.checkETX.move(250, 165)
 
         listCut = ["Ruch głowicy", "Ruch piły"]
         self.combo = QComboBox(self)
@@ -389,8 +392,9 @@ class App(QWidget):
         dFCuts['Ilosc'] = dFCuts['Ilosc'].astype(str)
         dFCuts['DlugoscCiecia'] = dFCuts['DlugoscCiecia'].astype(str)
         dFCuts_filtered = dFCuts[~dFCuts['Profil'].isin(dropProfile)]
-        dFCuts_filtered.loc[dFCuts_filtered['AngleL2'] == 135.0, 'AngleL2'] = 45.0
-        dFCuts_filtered.loc[dFCuts_filtered['AngleR2'] == 135.0, 'AngleR2'] = 45.0
+        if self.check135.isChecked():
+            dFCuts_filtered.loc[dFCuts_filtered['AngleL2'] == 135.0, 'AngleL2'] = 45.0
+            dFCuts_filtered.loc[dFCuts_filtered['AngleR2'] == 135.0, 'AngleR2'] = 45.0
         if len(self.textScratch.text()) > 0:
             optimize = self.optimizeScratch(dFCuts_filtered, 25, filepath)
             return optimize
