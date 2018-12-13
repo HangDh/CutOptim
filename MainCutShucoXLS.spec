@@ -2,9 +2,11 @@
 
 block_cipher = None
 
+import sys
+sys.setrecursionlimit(6000)
 
 a = Analysis(['MainCutShucoXLS.py'],
-             pathex=['C:\\PythonCut2'],
+             pathex=['c:\\Python_Programy\\PythonOptimCut'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -23,6 +25,7 @@ exe = EXE(pyz,
           exclude_binaries=True,
           name='MainCutShucoXLS',
           debug=False,
+          bootloader_ignore_signals=False,
           strip=False,
           upx=True,
           console=False )

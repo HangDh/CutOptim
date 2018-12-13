@@ -355,7 +355,7 @@ class App(QWidget):
             cuts += bar.barCuts
 
         for cut_ in cuts:
-            if cut_.cutProfil.endswith('A') or cut_.cutProfil.endswith('E'):
+            if cut_.cutProfil.endswith('A') or cut_.cutProfil.endswith('D') or cut_.cutProfil.endswith('E') or cut_.cutProfil.endswith('C'):
                 cut_.cutProfil = cut_.cutProfil[:-1]
             if len(cut_.cutMacros) > 0 or len(cut_.cutWorks) > 0:
                 cut_.cutCNC = 'CNC'

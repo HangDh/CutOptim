@@ -1,0 +1,638 @@
+:OPTIONS
+OVendorID = 200
+
+:JOB
+// NCX-Datei erzeugt von ORGADATA V11.2 (NC-X)
+
+cncdriver = 1.967
+info = "666"
+JNo = 1
+JIdentNo = "614"
+JMachineId = "CamQuix-BDM HANSEN"
+
+:BAR
+BCount = 1
+BNo = 1
+BSurface = "RAL"
+BLength = 6600.00
+BIdentNo = "421113A"
+BVendor = "HAN"
+BHeight = 28.50
+BWidth = 75.70
+
+:CUT
+Cutstart = 50.00
+CGenCutRetractOpening = 0
+CCount = 1
+CLength = 400.00
+CAngleLV = 90.0000
+CAngleRV = 90.0000
+CAngleLH = 45.0000
+CAngleRH = 45.0000
+CDescription = "A4,4"
+CPartNo = 00028
+CRotation = 0
+CUserIdent = 1
+CBinNo = 1
+
+:MACRO
+WMacroIdent = "OTW MONT 8_6"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 200.000
+WXMirror = 0
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 12.00
+WHeight = 2.00
+WDepth = 32.50
+WW1 = 6.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 32.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 12.00
+WHeight = 2.00
+WDepth = 22.50
+WW1 = 8.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 22.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:CUT
+Cutstart = 454.50
+CGenCutRetractOpening = 0
+CCount = 1
+CLength = 400.00
+CAngleLV = 90.0000
+CAngleRV = 90.0000
+CAngleLH = 45.0000
+CAngleRH = 45.0000
+CDescription = "A4,3"
+CPartNo = 00027
+CRotation = 0
+CUserIdent = 1
+CBinNo = 1
+
+:MACRO
+WMacroIdent = "M4_D_HIDDEN KTZ - FRAME"
+WComment = "Drainage holes for Frame | BJM Macro M4_O & M4_U"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 100.500
+WXMirror = 0
+:WORK
+WComment = "M4_O"
+WParent = STRUCT -1
+WPriority = 0
+WType = "L"
+WX1 = 0.00
+WSide = 6
+WY1 = -69.70
+WHeight = 2.00
+WDepth = 9.00
+WW1 = 35.00
+WW2 = 5.00
+WAngle = 0.0000
+WDT0D = 0.00
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 9.00
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "M4_I"
+WParent = STRUCT -1
+WPriority = 0
+WType = "L"
+WX1 = 0.00
+WSide = 1
+WY1 = 55.25
+WHeight = 2.00
+WDepth = 25.80
+WW1 = 35.00
+WW2 = 5.00
+WAngle = 0.0000
+WDT0D = 15.80
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 25.80
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:MACRO
+WMacroIdent = "M4_D_HIDDEN KTZ - FRAME"
+WComment = "Drainage holes for Frame | BJM Macro M4_O & M4_U"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 299.500
+WXMirror = 0
+:WORK
+WComment = "M4_O"
+WParent = STRUCT -1
+WPriority = 0
+WType = "L"
+WX1 = 0.00
+WSide = 6
+WY1 = -69.70
+WHeight = 2.00
+WDepth = 9.00
+WW1 = 35.00
+WW2 = 5.00
+WAngle = 0.0000
+WDT0D = 0.00
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 9.00
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "M4_I"
+WParent = STRUCT -1
+WPriority = 0
+WType = "L"
+WX1 = 0.00
+WSide = 1
+WY1 = 55.25
+WHeight = 2.00
+WDepth = 25.80
+WW1 = 35.00
+WW2 = 5.00
+WAngle = 0.0000
+WDT0D = 15.80
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 25.80
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:CUT
+Cutstart = 859.00
+CGenCutRetractOpening = 0
+CCount = 1
+CLength = 600.00
+CAngleLV = 90.0000
+CAngleRV = 90.0000
+CAngleLH = 45.0000
+CAngleRH = 45.0000
+CDescription = "A4,2"
+CPartNo = 00026
+CRotation = 0
+CUserIdent = 1
+CBinNo = 1
+
+:MACRO
+WMacroIdent = "Holes for corner connector BJM macro KTZ1883"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 8.000
+WXMirror = 0
+:WORK
+WComment = "B3_G40_1"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 21.25
+WHeight = 2.00
+WDepth = 27.50
+WW1 = 5.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 27.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "B3_G40_1"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 54.45
+WHeight = 2.00
+WDepth = 27.50
+WW1 = 5.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 27.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:MACRO
+WMacroIdent = "OTW MONT 8_6"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 200.000
+WXMirror = 0
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 6
+WY1 = -12.00
+WHeight = 2.00
+WDepth = 17.00
+WW1 = 6.00
+WDrillCorr = 1
+WDT0D = 0.00
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 17.00
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 6
+WY1 = -12.00
+WHeight = 2.00
+WDepth = 7.00
+WW1 = 8.00
+WDrillCorr = 1
+WDT0D = 0.00
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 7.00
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:MACRO
+WMacroIdent = "OTW MONT 8_6"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 400.000
+WXMirror = 0
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 6
+WY1 = -12.00
+WHeight = 2.00
+WDepth = 17.00
+WW1 = 6.00
+WDrillCorr = 1
+WDT0D = 0.00
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 17.00
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 6
+WY1 = -12.00
+WHeight = 2.00
+WDepth = 7.00
+WW1 = 8.00
+WDrillCorr = 1
+WDT0D = 0.00
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 7.00
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:MACRO
+WMacroIdent = "Holes for corner connector BJM macro KTZ1883"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 592.000
+WXMirror = 0
+:WORK
+WComment = "B3_G40_1"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 21.25
+WHeight = 2.00
+WDepth = 27.50
+WW1 = 5.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 27.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "B3_G40_1"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 54.45
+WHeight = 2.00
+WDepth = 27.50
+WW1 = 5.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 27.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:CUT
+Cutstart = 1463.50
+CGenCutRetractOpening = 0
+CCount = 1
+CLength = 600.00
+CAngleLV = 90.0000
+CAngleRV = 90.0000
+CAngleLH = 45.0000
+CAngleRH = 45.0000
+CDescription = "A4,1"
+CPartNo = 00025
+CRotation = 0
+CUserIdent = 1
+CBinNo = 1
+
+:MACRO
+WMacroIdent = "Holes for corner connector BJM macro KTZ1883"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 8.000
+WXMirror = 0
+:WORK
+WComment = "B3_G40_1"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 21.25
+WHeight = 2.00
+WDepth = 27.50
+WW1 = 5.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 27.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "B3_G40_1"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 54.45
+WHeight = 2.00
+WDepth = 27.50
+WW1 = 5.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 27.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:MACRO
+WMacroIdent = "OTW MONT 8_6"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 400.000
+WXMirror = 0
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 6
+WY1 = -12.00
+WHeight = 2.00
+WDepth = 17.00
+WW1 = 6.00
+WDrillCorr = 1
+WDT0D = 0.00
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 17.00
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 6
+WY1 = -12.00
+WHeight = 2.00
+WDepth = 7.00
+WW1 = 8.00
+WDrillCorr = 1
+WDT0D = 0.00
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 7.00
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:MACRO
+WMacroIdent = "OTW MONT 8_6"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 200.000
+WXMirror = 0
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 6
+WY1 = -12.00
+WHeight = 2.00
+WDepth = 17.00
+WW1 = 6.00
+WDrillCorr = 1
+WDT0D = 0.00
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 17.00
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 6
+WY1 = -12.00
+WHeight = 2.00
+WDepth = 7.00
+WW1 = 8.00
+WDrillCorr = 1
+WDT0D = 0.00
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 7.00
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:MACRO
+WMacroIdent = "Holes for corner connector BJM macro KTZ1883"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 592.000
+WXMirror = 0
+:WORK
+WComment = "B3_G40_1"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 21.25
+WHeight = 2.00
+WDepth = 27.50
+WW1 = 5.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 27.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "B3_G40_1"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 54.45
+WHeight = 2.00
+WDepth = 27.50
+WW1 = 5.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 27.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+

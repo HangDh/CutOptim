@@ -1,0 +1,22 @@
+:CUT:OPTIONS
+OVendorID = 200
+
+:JOB
+// NCX-Datei erzeugt von ORGADATA V11.2 (NC-X)
+
+cncdriver = 1.967
+info = "666"
+JNo = 1
+JIdentNo = "614"
+JMachineId = "CamQuix-BDM HANSEN"
+
+:BAR
+BCount = 1
+BNo = 1
+BSurface = "RAL"
+BLength = 6600.00
+BIdentNo = "421113"
+BVendor = "HAN"
+BHeight = 28.50
+BWidth = 75.70
+

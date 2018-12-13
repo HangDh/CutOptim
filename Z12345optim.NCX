@@ -1,0 +1,187 @@
+:CUT:OPTIONS
+OVendorID = 200
+
+:JOB
+// NCX-Datei erzeugt von ORGADATA V11.2 (NC-X)
+
+cncdriver = 1.967
+info = "666"
+JNo = 1
+JIdentNo = "614"
+JMachineId = "CamQuix-BDM HANSEN"
+
+:BAR
+BCount = 1
+BNo = 1
+BSurface = "RAL"
+BLength = 6600.00
+BIdentNo = "421113"
+BVendor = "HAN"
+BHeight = 28.50
+BWidth = 75.70
+
+:CUT
+Cutstart = 4868.00
+CGenCutRetractOpening = 0
+CCount = 1
+CLength = 1600.00
+CAngleLV = 90.0000
+CAngleRV = 90.0000
+CAngleLH = 45.0000
+CAngleRH = 45.0000
+CDescription = "A2,4"
+CPartNo = 00008
+CRotation = 0
+CUserIdent = 2
+CBinNo = 1
+
+:MACRO
+WMacroIdent = "OTW MONT 8_6"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 1400.000
+WXMirror = 0
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 12.00
+WHeight = 2.00
+WDepth = 32.50
+WW1 = 6.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 32.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 12.00
+WHeight = 2.00
+WDepth = 22.50
+WW1 = 8.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 22.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:MACRO
+WMacroIdent = "OTW MONT 8_6"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 800.000
+WXMirror = 0
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 12.00
+WHeight = 2.00
+WDepth = 32.50
+WW1 = 6.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 32.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 12.00
+WHeight = 2.00
+WDepth = 22.50
+WW1 = 8.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 22.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:MACRO
+WMacroIdent = "OTW MONT 8_6"
+WType = MACRO
+WParent = STRUCT 0
+WX1 = 200.000
+WXMirror = 0
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 12.00
+WHeight = 2.00
+WDepth = 32.50
+WW1 = 6.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 32.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+
+:WORK
+WComment = "MONT_8_6"
+WParent = STRUCT -1
+WPriority = 0
+WType = "C"
+WX1 = 0.00
+WSide = 1
+WY1 = 12.00
+WHeight = 2.00
+WDepth = 22.50
+WW1 = 8.00
+WDrillCorr = 1
+WDT0D = 15.50
+WDT0M = 0
+WDT0F = 1.00
+WDT1D = 22.50
+WDT1M = 1
+WDT1F = 1.00
+WDTSecEXTR = 0
+WBroach = 0
+WRotation = 0
+

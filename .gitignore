@@ -1,2 +1,5 @@
 *.CUN
 *.txt
+
+\build
+\dist
